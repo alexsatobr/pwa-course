@@ -27,11 +27,7 @@ window.addEventListener('beforeinstallprompt', function(event){
     return false;
 });
 
-var promise = new Promise(function(resolve, reject){
-    setTimeout(function(){
-        reject({code: 500, message: 'An error ocurred!'});
-    }, 3000);
-});
+
 
 // In SW get/ajax requests won't work as its syncronous and SW only accepts assyncronous requests (fetch and promises)
 // example of get req below
@@ -48,37 +44,44 @@ var promise = new Promise(function(resolve, reject){
 
 // xhr.send();
 
-fetch('https://httpbin.org/ip')
-    .then(function(response){
-        console.log(response)
-        return response.json();
-    })
-    .then(function(data){
-        console.log(data);
-    })
-    .catch(function(err){
-        console.log(err);
-    });
+// FETCH API EXAMPLE
+// fetch('https://httpbin.org/ip')
+//     .then(function(response){
+//         console.log(response)
+//         return response.json();
+//     })
+//     .then(function(data){
+//         console.log(data);
+//     })
+//     .catch(function(err){
+//         console.log(err);
+//     });
 
-fetch('https://httpbin.org/post', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    },
-    mode: 'cors',
-    body: JSON.stringify({message: 'Does this work?'})
-})
-    .then(function(response){
-        console.log(response)
-        return response.json();
-    })
-    .then(function(data){
-        console.log(data);
-    })
-    .catch(function(err){
-        console.log(err);
-    });
+// fetch('https://httpbin.org/post', {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json'
+//     },
+//     mode: 'cors',
+//     body: JSON.stringify({message: 'Does this work?'})
+// })
+//     .then(function(response){
+//         console.log(response)
+//         return response.json();
+//     })
+//     .then(function(data){
+//         console.log(data);
+//     })
+//     .catch(function(err){
+//         console.log(err);
+//     });
+
+// var promise = new Promise(function(resolve, reject){
+//     setTimeout(function(){
+//         reject({code: 500, message: 'An error ocurred!'});
+//     }, 3000);
+// });
 // promise.then(function(text){
 //     return (text);
 // }, function(err){
@@ -89,12 +92,10 @@ fetch('https://httpbin.org/post', {
 
 // console.log('This is executed');
 
-promise.then(function(text){
-    return (text);
-}).then(function(newText){
-    console.log(newText);
-}).catch(function(err){
-    console.log(err.code, err.message);
-});
-
-console.log('This is executed');
+// promise.then(function(text){
+//     return (text);
+// }).then(function(newText){
+//     console.log(newText);
+// }).catch(function(err){
+//     console.log(err.code, err.message);
+// });
