@@ -1,33 +1,29 @@
+
 var deferredPrompt;
 
 if (!window.Promise) {
-    window.Promise = Promise;
+  window.Promise = Promise;
 }
 
 //adding a condition in order for the navigator to check if it has serviceWorker
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-    //second param, the scope js obj is used to control a folder
-    // .register('/sw.js', {scope: '/'})
-    // serviceworkers only work on https requests and localhost as exception
-        .register('/sw.js')
-        .then(function(){
-            console.log('Service worker registered!');
-        })
-        .catch(function(err){
-            console.log(err);
-        });
+  navigator.serviceWorker
+    .register('/sw.js')
+    .then(function () {
+      console.log('Service worker registered!');
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
 }
 
-window.addEventListener('beforeinstallprompt', function(event){
-    console.log('beforeinstallprompt fired');
-    event.preventDefault();
-    deferredPrompt = event;
-    return false;
+window.addEventListener('beforeinstallprompt', function(event) {
+  console.log('beforeinstallprompt fired');
+  event.preventDefault();
+  deferredPrompt = event;
+  return false;
 });
-
-
 
 // In SW get/ajax requests won't work as its syncronous and SW only accepts assyncronous requests (fetch and promises)
 // example of get req below
